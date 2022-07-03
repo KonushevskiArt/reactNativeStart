@@ -12,7 +12,7 @@ export const AppCard = props => {
 const styles = StyleSheet.create({
   default: {
     borderWidth: 2,
-    borderColor: 'green',
+    borderColor: '#489928',
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
