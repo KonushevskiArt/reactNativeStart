@@ -8,7 +8,6 @@ import { TodoContext } from './context/todo/todoContext';
 
 export const MainLayout = () => {
   const {todos, addTodo, removeTodo, updateTodo} = useContext(TodoContext)
-  // const [todos, setTodos] = useState([{id: '1', title: 'Go to the job'}]);
   const [todoId, setTodoId] = useState(null);
 
   let content = (
@@ -19,15 +18,6 @@ export const MainLayout = () => {
       openTodo={setTodoId}
     />
   )
-
-  // const updateTodo = (id, title) => {
-  //   setTodos(old => old.map(todo => {
-  //     if(todo.id === id) {
-  //       todo.title = title;
-  //     }
-  //     return todo;
-  //   }))
-  // }
 
   // const removeTodo = (id) => {
   //   const todo = todos.find(t => t.id === id);
