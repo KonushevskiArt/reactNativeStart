@@ -7,63 +7,56 @@ import { TodoScreen } from './screens/TodoScreen';
 import { TodoContext } from './context/todo/todoContext';
 
 export const MainLayout = () => {
-  const todosContext = useContext(TodoContext)
-  const [todos, setTodos] = useState([{id: '1', title: 'Go to the job'}]);
+  const {todos, addTodo, removeTodo, updateTodo} = useContext(TodoContext)
+  // const [todos, setTodos] = useState([{id: '1', title: 'Go to the job'}]);
   const [todoId, setTodoId] = useState(null);
 
   let content = (
     <MainScreen  
-      todos={todosContext.todos} 
+      todos={todos} 
       addTodo={addTodo} 
       removeTodo={removeTodo} 
       openTodo={setTodoId}
     />
   )
 
-  const addTodo = (title) => {
-    setTodos(prev => [...prev, {
-      id: Date.now().toString(),
-      title
-    }])
-  }
+  // const updateTodo = (id, title) => {
+  //   setTodos(old => old.map(todo => {
+  //     if(todo.id === id) {
+  //       todo.title = title;
+  //     }
+  //     return todo;
+  //   }))
+  // }
 
-  const updateTodo = (id, title) => {
-    setTodos(old => old.map(todo => {
-      if(todo.id === id) {
-        todo.title = title;
-      }
-      return todo;
-    }))
-  }
-
-  const removeTodo = (id) => {
-    const todo = todos.find(t => t.id === id);
-    Alert.alert(
-      "Removing element",
-      `Are you sure that you want to delete "${todo.title}"?`,
-      [
-        {
-          text: "Cancel",
-          style: "cancel",
-        },
-        {
-          text: "Remove",
-          onPress: () => {
-            setTodoId(null)
-            setTodos(prev => prev.filter(el => el.id !== id))
-          },
-          style: "destructive",
-        },
-      ],
-      {
-        cancelable: false,
-        onDismiss: () =>
-          Alert.alert(
-            "This alert was dismissed by tapping outside of the alert dialog."
-          ),
-      }
-    );
-  }
+  // const removeTodo = (id) => {
+  //   const todo = todos.find(t => t.id === id);
+  //   Alert.alert(
+  //     "Removing element",
+  //     `Are you sure that you want to delete "${todo.title}"?`,
+  //     [
+  //       {
+  //         text: "Cancel",
+  //         style: "cancel",
+  //       },
+  //       {
+  //         text: "Remove",
+  //         onPress: () => {
+  //           setTodoId(null)
+  //           setTodos(prev => prev.filter(el => el.id !== id))
+  //         },
+  //         style: "destructive",
+  //       },
+  //     ],
+  //     {
+  //       cancelable: false,
+  //       onDismiss: () =>
+  //         Alert.alert(
+  //           "This alert was dismissed by tapping outside of the alert dialog."
+  //         ),
+  //     }
+  //   );
+  // }
 
   if (todoId) {
     const selectedTodo = todos.find((todo) => todo.id === todoId)
