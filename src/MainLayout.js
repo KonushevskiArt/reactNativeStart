@@ -5,17 +5,18 @@ import { THEME } from './theme';
 import { MainScreen } from './screens/MainScreen';
 import { TodoScreen } from './screens/TodoScreen';
 import { TodoContext } from './context/todo/todoContext';
+import { ScreenContext } from './context/screen/screenContext';
 
 export const MainLayout = () => {
-  const {todos, addTodo, removeTodo, updateTodo} = useContext(TodoContext)
-  const [todoId, setTodoId] = useState(null);
+  const {todos, addTodo, removeTodo, updateTodo} = useContext(TodoContext);
+  const {todoId, changeScreen} = useContext(ScreenContext)
 
   let content = (
     <MainScreen  
       todos={todos} 
       addTodo={addTodo} 
       removeTodo={removeTodo} 
-      openTodo={setTodoId}
+      openTodo={changeScreen}
     />
   )
 
@@ -54,7 +55,7 @@ export const MainLayout = () => {
       <TodoScreen 
         onRemove={removeTodo} 
         todo={selectedTodo} 
-        goBack={() => setTodoId(null)}
+        goBack={() => changeScreen(null)}
         onSave={updateTodo}
       />
     )

@@ -3,6 +3,8 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { MainLayout } from './src/MainLayout';
 import { TodoState } from './src/context/todo/TodoState';
+import { ScreenState } from './src/context/screen/ScreenState';
+
 import { View, Text } from 'react-native';
 
 async function loadApp() {
@@ -42,9 +44,11 @@ export default function App() {
 
   return (
     <View onLayout={onLayoutRootView}>
-      <TodoState>
-        <MainLayout />
-      </TodoState>
+      <ScreenState>
+        <TodoState>
+          <MainLayout />
+        </TodoState>
+      </ScreenState>
     </View>
   ); 
 }
